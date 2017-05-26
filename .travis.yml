@@ -1,6 +1,6 @@
-language: node_js
-node_js: stable
-# assign build branches
+language: node_js 
+node_js: stable 
+# assign build branches 
 branches:
   only:
     – blog-source 
