@@ -6,8 +6,8 @@ branches:
     – blog-source 
 # cache this directory
 cache:
-directories:
-– node_modules
+  directories:
+    – node_modules 
 # S: Build Lifecycle
 before_install:
 – openssl aes-256-cbc -K $encrypted_5fc59c827f08_key -iv $encrypted_5fc59c827f08_iv -in ./.travis/id_rsa.enc -out ~/.ssh/id_rsa -d
@@ -25,5 +25,5 @@ after_success:
 – git config –global user.name "Michael_Sun"
 – git config –global user.email "Sundj_0825@163.com"
 – sed -i "/^ *repo/s~github\.com~${githubToken}@github.com~" _config.yml
-– hexo deploy
+– hexo deploy 
 # E: Build LifeCycle
