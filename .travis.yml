@@ -13,19 +13,12 @@ cache:
 # S: Build Lifecycle 
 before_install:
   – openssl aes-256-cbc -K $encrypted_5fc59c827f08_key -iv $encrypted_5fc59c827f08_iv -in ./.travis/id_rsa.enc -out ~/.ssh/id_rsa -d 
-  - echo 'debug1'
   – chmod 600 ~/.ssh/id_rsa
-  - echo 'debug2'
   – eval $(ssh-agent)
-  - echo 'debug3'
   – ssh-add ~/.ssh/id_rsa
-  - echo 'debug4'
   – cp .travis/ssh_config ~/.ssh/config
-  - echo 'debug5'
   – npm install -g hexo-cli # 安装 hexo
-  - echo 'debug6'
   – git clone -b mod https://github.com/quentin-chen/hexo-theme-even.git themes/even
-  - echo 'debug7'
 install:
   – npm install # 安装 package.json 中的插件
 script:
