@@ -19,6 +19,7 @@ before_install:
   - git clone https://github.com/klugjo/hexo-theme-clean-blog.git themes/CleanBlog
 install:
   - npm install # 安装 package.json 中的插件
+  - npm install hexo-deployer-git --save # 下载hexo git插件 
 script:
   - hexo generate
 after_success:
