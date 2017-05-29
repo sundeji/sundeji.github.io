@@ -34,7 +34,7 @@ google_analytics:
 addthis:
 
 # set your own favicon
-favicon: ../img/favicon.ico
+favicon: https://raw.githubusercontent.com/sundeji/sundeji.github.io/blog-source/themes/CleanBlog/source/img/favicon.ico
 
 # Social Accounts
 twitter_url:
