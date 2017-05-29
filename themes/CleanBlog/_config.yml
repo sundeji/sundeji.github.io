@@ -34,12 +34,12 @@ google_analytics:
 addthis:
 
 # set your own favicon
-favicon: img/favicon.ico
+favicon: ../img/favicon.ico
 
 # Social Accounts
 twitter_url:
 twitter_handle:
-facebook_url: https://facebook_url
+facebook_url:
 github_url: https://github.com/sundeji
 gitlab_url:
 linkedin_url:
