@@ -5,7 +5,7 @@
 # Site
 title: 孙德基的博客
 subtitle:
-description: 这是描述
+description: 
 author: 孙德基
 language: zh-CN
 timezone:
@@ -68,6 +68,4 @@ theme: CleanBlog
 # Deployment
 ## Docs: https://hexo.io/docs/deployment.html
 deploy:
-  type: git
-  repo: git@github.com:sundeji/sundeji.github.io.git
-  branch: master
+  type: 
