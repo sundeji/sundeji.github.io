@@ -68,6 +68,6 @@ theme: CleanBlog
 # Deployment
 ## Docs: https://hexo.io/docs/deployment.html
 deploy:
- -  type: git
- -  repo: git@github.com:sundeji/sundeji.github.io.git
- -  branch: master
+ type: git
+ repo: git@github.com:sundeji/sundeji.github.io.git
+ branch: master
