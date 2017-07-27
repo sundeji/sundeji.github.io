@@ -3,7 +3,7 @@ title: ubuntu 把 OPENJDK 换成 JDK
 tags: ["linux"]
 ---
 
-参考文献：http://blog.csdn.net/hguisu/article/details/7453390
+参考文献：http://blog.sina.com.cn/s/blog_493e1d510102vonv.html
 
 由于ubuntu中可能会有默认的jdk，如openjdk。假如有openjdk的话，结果还是OpenJDK。
 
