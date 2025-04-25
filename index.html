@@ -1,312 +1,119 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
-
-<!-- Head tag -->
+<html lang="en">
 <head>
-
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-
-    <!--Description-->
-    
-
-    <!--Author-->
-    
-        <meta name="author" content="孙德基">
-    
-
-    <!--Open Graph Title-->
-    
-        <meta property="og:title" content="孙德基的博客"/>
-    
-
-    <!--Open Graph Description-->
-    
-
-    <!--Open Graph Site Name-->
-    <meta property="og:site_name" content="Tomorrow just might be a better day"/>
-
-    <!--Type page-->
-    
-        <meta property="og:type" content="website" />
-    
-
-    <!--Page Cover-->
-    
-
-        <meta name="twitter:card" content="summary" />
-    
-
-    <!-- Title -->
-    
-    <title>孙德基的博客</title>
-
-    <!-- Bootstrap Core CSS -->
-    <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet"/>
-
-    <!-- Custom CSS -->
-    <link rel="stylesheet" href="/css/style.css">
-
-    <!-- Custom Fonts -->
-    <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet" type="text/css">
-    <link href="//fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" rel="stylesheet" type="text/css">
-    <link href="//fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" rel="stylesheet" type="text/css">
-
-    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
-    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-    <!--[if lt IE 9]>
-    <script src="//oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-    <script src="//oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
-    <![endif]-->
-
-    <!-- Gallery -->
-    <link href="//cdnjs.cloudflare.com/ajax/libs/featherlight/1.3.5/featherlight.min.css" type="text/css" rel="stylesheet" />
-
-    <!-- Google Analytics -->
-    
-
-
-    <!-- favicon -->
-    
-    <link rel="icon" href="https://raw.githubusercontent.com/sundeji/sundeji.github.io/blog-source/themes/CleanBlog/source/img/favicon.ico">
-    
-	
+  <meta charset="UTF-8">
+  <title>🎵 随机音乐播放器</title>
 </head>
-
-
 <body>
+  <h2>🎲 随机音乐播放器</h2>
+  <button onclick="start()">开始</button>
+  <button onclick="playRandomSong()">播放随机歌曲</button>
+  <button onclick="pauseMusic()">暂停</button>
+  <button onclick="stop()">停止</button>
 
-    <!-- Menu -->
-    <!-- Navigation -->
-<nav class="navbar navbar-default navbar-custom navbar-fixed-top">
-    <div class="container-fluid">
-        <!-- Brand and toggle get grouped for better mobile display -->
-        <div class="navbar-header page-scroll">
-            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
-                <span class="sr-only">Toggle navigation</span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-            </button>
-            <a class="navbar-brand" href="/">孙德基的博客</a>
-        </div>
+  <audio id="myAudio"></audio>
 
-        <!-- Collect the nav links, forms, and other content for toggling -->
-        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-            <ul class="nav navbar-nav navbar-right">
-                
-                    <li>
-                        <a href="/">
-                            
-                                Home
-                            
-                        </a>
-                    </li>
-                
-                    <li>
-                        <a href="/archives">
-                            
-                                Archives
-                            
-                        </a>
-                    </li>
-                
-                    <li>
-                        <a href="/tags">
-                            
-                                Tags
-                            
-                        </a>
-                    </li>
-                
-                    <li>
-                        <a href="/categories">
-                            
-                                Categories
-                            
-                        </a>
-                    </li>
-                
-                    <li>
-                        <a href="/About-Me">
-                            
-                                About Me
-                            
-                        </a>
-                    </li>
-                
-                    <li>
-                        <a href="https://github.com/sundeji">
-                            
-                                <i class="fa fa-github fa-stack-2x"></i>
-                            
-                        </a>
-                    </li>
-                
-            </ul>
-        </div>
-        <!-- /.navbar-collapse -->
-    </div>
-    <!-- /.container -->
-</nav>
+  <script>
+    const audio = document.getElementById('myAudio');
+    const maxIntervalTime = 2 * 60 * 1000; // 最大播放间隔时间ms
+    const minIntervalTime = 1 * 60 * 1000; // 最小播放间隔时间ms
+    const pauseMusicStartTime = "23:30"; // 暂停开始时间
+    const pauseMusicStopTime = "05:30"; // 暂停结束时间
+    var isStarted = "0";  //1:已经开始 2:已经结束
 
-    <!-- Main Content -->
-    <!-- Page Header -->
-<!-- Set your background image for this header in the theme's configuration: index_cover -->
-<header class="intro-header" style="background-image: url('http://www.codeblocq.com/assets/projects/hexo-theme-clean-blog/img/home-bg.jpg')">
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
-                <div class="site-heading">
-                    <h1>孙德基的博客</h1>
-                    <hr class="small">
-                    <span class="subheading"></span>
-                </div>
-            </div>
-        </div>
-    </div>
-</header>
 
-<!-- Main Content -->
-<div class="container">
-    <div class="row">
-        <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
-            
-                <div class="post-preview">
-    <a href="/2017/07/27/TODO/">
-        <h2 class="post-title">
-            TODO
-        </h2>
-        
-    </a>
-    <p class="post-meta">
-        <!-- Date and Author -->
-        
-        2017-07-27
-    </p>
-</div>
-<hr>
-            
-                <div class="post-preview">
-    <a href="/2017/07/27/socket阻塞与非阻塞，同步与异步概念/">
-        <h2 class="post-title">
-            socket阻塞与非阻塞，同步与异步概念
-        </h2>
-        
-    </a>
-    <p class="post-meta">
-        <!-- Date and Author -->
-        
-        2017-07-27
-    </p>
-</div>
-<hr>
-            
-                <div class="post-preview">
-    <a href="/2017/07/27/ubuntu把OPENJDK换成JDK/">
-        <h2 class="post-title">
-            ubuntu 把 OPENJDK 换成 JDK
-        </h2>
-        
-    </a>
-    <p class="post-meta">
-        <!-- Date and Author -->
-        
-        2017-07-27
-    </p>
-</div>
-<hr>
-            
-                <div class="post-preview">
-    <a href="/2017/05/30/hello-world/">
-        <h2 class="post-title">
-            Hello World1
-        </h2>
-        
-    </a>
-    <p class="post-meta">
-        <!-- Date and Author -->
-        
-        2017-05-30
-    </p>
-</div>
-<hr>
-            
+    // 歌曲列表（你可以改成你自己的文件）
+    const songs = [
+      "剪指甲01.mov",
+      "剪指甲02.mov",
+      "剪指甲03.mov",
+      "剪指甲04.mov",
+      "剪指甲05.mov",
+      "golpe-en-mesa-con-mano-hit-table-with-hand-171046.mp3",
+      "敲桌子声音.mov",
+      "敲桌子声音.mov",
+      "敲桌子声音.mov",
+      "敲桌子02.mov"
+    ];
 
-            <ul class="pager">
+    //休眠 毫秒
+    function sleep(ms) {
+        return new Promise(resolve => setTimeout(resolve, ms));
+    }
     
+     // 开始
+     function start(){
+        console.log("开始:[" +new Date() + "]");
+        // 当当前歌曲播放结束时，自动播放下一首
+        audio.addEventListener('ended',playRandomSong);
+        // 每分钟检查一次
+        setInterval(checkAndRun, 60 * 1000);
+        //运行
+        playRandomSong();
+        isStarted = "1";
+    }
     
-</ul>
-        </div>
-    </div>
-</div>
+    // 停止
+    function stop(){
+         console.log("停止:[" +new Date() + "]");
+         audio.removeEventListener('ended',playRandomSong);
+         isStarted = "2";
+    } 
+
+    function checkAndRun(){
+      if (isInPreciseRange(pauseMusicStartTime, pauseMusicStopTime)){
+        if (isStarted === "1"){
+          console.log(`audio.pause()暂停：`+new Date());
+          stop();
+        }
+      } else {
+        if (isStarted === "2"){
+          start();
+        }
+      }
+    }
 
 
-
-    <!-- Footer -->
-    <hr />
-
-<!-- Footer -->
-<footer>
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
-                <ul class="list-inline text-center">
-                    
-
-                    
-
-                    
-                        <li>
-                            <a href="https://github.com/sundeji" target="_blank">
-                                <span class="fa-stack fa-lg">
-                                    <i class="fa fa-circle fa-stack-2x"></i>
-                                    <i class="fa fa-github fa-stack-1x fa-inverse"></i>
-                                </span>
-                            </a>
-                        </li>
-                    
-
-                    
-
-                    
-                        <li>
-                            <a href="mailto:Sundj_0825@163.com" target="_blank">
-                                <span class="fa-stack fa-lg">
-                                    <i class="fa fa-circle fa-stack-2x"></i>
-                                    <i class="fa fa-envelope-o fa-stack-1x fa-inverse"></i>
-                                </span>
-                            </a>
-                        </li>
-                    
-
-                    
-                </ul>
-                <p class="copyright text-muted">&copy; 2017 孙德基<br></p>
-                <p class="copyright text-muted">Original Theme <a target="_blank" href="http://startbootstrap.com/template-overviews/clean-blog/">Clean Blog</a> from <a href="http://startbootstrap.com/" target="_blank">Start Bootstrap</a></p>
-                <p class="copyright text-muted">Adapted for <a target="_blank" href="https://hexo.io/">Hexo</a> by <a href="http://www.codeblocq.com/" target="_blank">Jonathan Klughertz</a></p>
-            </div>
-        </div>
-    </div>
-</footer>
+    //是否在时间段内 例：isInPreciseRange("15:34", "16:33")
+    function isInPreciseRange(start, end) {
+       const now = new Date();
+       const nowMinutes = now.getHours() * 60 + now.getMinutes();
+       const [startH, startM] = start.split(':').map(Number);
+       const [endH, endM] = end.split(':').map(Number);
+       const startMinutes = startH * 60 + startM;
+       const endMinutes = endH * 60 + endM;
+      return nowMinutes >= startMinutes && nowMinutes < endMinutes;
+    }
 
 
-    <!-- After footer scripts -->
-    
-<!-- jQuery -->
-<script src="//code.jquery.com/jquery-2.1.4.min.js"></script>
+    async function playRandomSong() {
+      // 随机播放间隔时间
+      //Math.random() * ( 最大値 - 最小値 ) + 最小値;
+      let randomSleepTime = Math.floor(Math.random() * (maxIntervalTime - minIntervalTime) + minIntervalTime);
+      await sleep(randomSleepTime);
+      // 随机选一首
+      const randomIndex = Math.floor(Math.random() * songs.length);
+      console.log("randomIndex:"+Math.floor(Math.random() * songs.length)+ "[" +new Date() + "]");
+      const chosenSong = songs[randomIndex];
+      audio.src = chosenSong;
 
-<!-- Bootstrap -->
-<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+      // 在加载完成后设置随机播放时间
+      audio.onloadedmetadata = () => {
+        const duration = audio.duration;
+        const randomTime = Math.random() * duration * 0.5; // 随机秒数
+        audio.currentTime = randomTime;
+        audio.play();
+        console.log(`正在播放：${chosenSong}，从 ${randomTime.toFixed(2)} 秒开始`);
+      };
+    }
 
-<!-- Gallery -->
-<script src="//cdnjs.cloudflare.com/ajax/libs/featherlight/1.3.5/featherlight.min.js" type="text/javascript" charset="utf-8"></script>
+    function playMusic() {
+      audio.play();
+    }
 
-<!-- Disqus Comments -->
-
-
-
+    function pauseMusic() {
+      audio.pause();
+    }
+  </script>
 </body>
-
 </html>
