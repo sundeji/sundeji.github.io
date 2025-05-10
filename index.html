@@ -11,7 +11,7 @@
   <button onclick="pauseMusic()">暂停</button>
   <button onclick="stop()">停止</button>
 
-  <audio id="myAudio"></audio>
+  <audio id="myAudio" controls></audio>
 
   <script>
     const audio = document.getElementById('myAudio');
@@ -21,7 +21,25 @@
     const pauseMusicStopTime = "05:30"; // 暂停结束时间
     var isStarted = "0";  //1:已经开始 2:已经结束
 
+    if ('mediaSession' in navigator) {
+      navigator.mediaSession.metadata = new MediaMetadata({
+        title: '测试音乐标题',
+        artist: '演唱者名称',
+        album: '专辑名称',
+        artwork: [
+          { src: 'cover.jpg',   sizes: '96x96',   type: 'image/jpeg' },
+          { src: 'cover.jpg',   sizes: '128x128', type: 'image/jpeg' },
+          { src: 'cover.jpg',   sizes: '192x192', type: 'image/jpeg' },
+          { src: 'cover.jpg',   sizes: '256x256', type: 'image/jpeg' },
+          { src: 'cover.jpg',   sizes: '384x384', type: 'image/jpeg' },
+          { src: 'cover.jpg',   sizes: '512x512', type: 'image/jpeg' },
+        ]
+      });
 
+      navigator.mediaSession.setActionHandler('play', () => {
+        audio.play();
+      });
+      
     // 歌曲列表（你可以改成你自己的文件）
     const songs = [
       "剪指甲01.mov",
