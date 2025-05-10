@@ -27,12 +27,12 @@
         artist: '演唱者名称',
         album: '专辑名称',
         artwork: [
-          { src: 'cover.jpg',   sizes: '96x96',   type: 'image/jpeg' },
-          { src: 'cover.jpg',   sizes: '128x128', type: 'image/jpeg' },
-          { src: 'cover.jpg',   sizes: '192x192', type: 'image/jpeg' },
-          { src: 'cover.jpg',   sizes: '256x256', type: 'image/jpeg' },
-          { src: 'cover.jpg',   sizes: '384x384', type: 'image/jpeg' },
-          { src: 'cover.jpg',   sizes: '512x512', type: 'image/jpeg' },
+          { src: 'img/favicon.ico',   sizes: '96x96',   type: 'image/jpeg' },
+          { src: 'img/favicon.ico',   sizes: '128x128', type: 'image/jpeg' },
+          { src: 'img/favicon.ico',   sizes: '192x192', type: 'image/jpeg' },
+          { src: 'img/favicon.ico',   sizes: '256x256', type: 'image/jpeg' },
+          { src: 'img/favicon.ico',   sizes: '384x384', type: 'image/jpeg' },
+          { src: 'img/favicon.ico',   sizes: '512x512', type: 'image/jpeg' },
         ]
       });
 
@@ -40,6 +40,10 @@
         audio.play();
       });
       
+      navigator.mediaSession.setActionHandler('pause', () => {
+        audio.pause();
+      });
+
     // 歌曲列表（你可以改成你自己的文件）
     const songs = [
       "剪指甲01.mov",
